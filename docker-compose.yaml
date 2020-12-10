@@ -20,6 +20,8 @@ services:
     image: 'redis:6.0-alpine'
     ports:
       - "6379:6379"
+    environment: 
+      - REDIS_PASSWORD=redis
     volumes:
       - 'redis:/data'
     networks:
@@ -41,6 +43,9 @@ services:
       - PG_DB=sport_booking
       - PG_USER=postgres
       - PG_PASSWORD=postgres
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=redis
     volumes:
       - ../sportbook-backend:/app
       - ../sportbook-backend/node_modules:/app/node_modules
@@ -66,6 +71,9 @@ services:
       - PG_DB=sport_booking
       - PG_USER=postgres
       - PG_PASSWORD=postgres
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=redis
     volumes:
       - ../sportbook-worker:/app
       - ../sportbook-worker/node_modules:/app/node_modules
